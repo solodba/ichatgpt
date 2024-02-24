@@ -1,0 +1,9 @@
+[app]
+name = "ichatgpt"
+
+[app.http]
+host = "127.0.0.1"
+port = 8888
+
+[chatgpt]
+openai_api_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
