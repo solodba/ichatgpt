@@ -7,6 +7,7 @@ require (
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/emicklei/go-restful-openapi/v2 v2.9.1
 	github.com/emicklei/go-restful/v3 v3.10.2
+	github.com/sashabaranov/go-openai v1.20.0
 	github.com/solodba/mcube v1.0.4
 	github.com/spf13/cobra v1.8.0
 )
