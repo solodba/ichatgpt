@@ -33,6 +33,8 @@ type App struct {
 // ChatGPT结构体
 type ChatGPT struct {
 	OpenaiApiKey string `toml:"openai_api_key" env:"CHATGPT_OPENAIAPIKEY"`
+	HttpProxy    string `toml:"chatgpt_http_proxy" env:"CHATGPT_HTTP_PROXY"`
+	HttpsProxy   string `toml:"chatgpt_https_proxy" env:"CHATGPT_HTTPS_PROXY"`
 }
 
 // 全局配置Config结构体

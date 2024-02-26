@@ -14,6 +14,8 @@ func TestLoadConfigFromToml(t *testing.T) {
 	t.Log(conf.C().App.Name)
 	t.Log(conf.C().App.Http)
 	t.Log(conf.C().ChatGPT.OpenaiApiKey)
+	t.Log(conf.C().ChatGPT.HttpProxy)
+	t.Log(conf.C().ChatGPT.HttpsProxy)
 }
 
 func TestLoadConfigFromEnv(t *testing.T) {
@@ -24,4 +26,6 @@ func TestLoadConfigFromEnv(t *testing.T) {
 	t.Log(conf.C().App.Name)
 	t.Log(conf.C().App.Http)
 	t.Log(conf.C().ChatGPT.OpenaiApiKey)
+	t.Log(conf.C().ChatGPT.HttpProxy)
+	t.Log(conf.C().ChatGPT.HttpsProxy)
 }
