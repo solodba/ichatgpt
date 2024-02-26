@@ -13,6 +13,7 @@ const (
 // Audio功能接口
 type Service interface {
 	CreateSpeech(context.Context, *CreateSpeechRequest) (*CreateSpeechResponse, error)
+	CreateTranscription(context.Context, *CreateTranscriptionRequest) (*CreateSpeechResponse, error)
 }
 
 // CreateSpeechRequest结构体
@@ -33,5 +34,26 @@ func NewCreateSpeechRequest() *CreateSpeechRequest {
 
 // 获取文件路径
 func (c *CreateSpeechRequest) GetFile() string {
+	return strings.TrimRight(c.FilePath, "/") + "/" + c.FileName
+}
+
+// CreateTranscriptionRequest结构体
+type CreateTranscriptionRequest struct {
+	FileName       string  `json:"file_name"`
+	FilePath       string  `json:"file_path"`
+	Model          string  `json:"model"`
+	Language       string  `json:"language"`
+	Prompt         string  `json:"prompt"`
+	ResponseFormat string  `json:"response_format"`
+	Temperature    float32 `json:"temperature"`
+}
+
+// CreateTranscriptionRequest结构体构造函数
+func NewCreateTranscriptionRequest() *CreateTranscriptionRequest {
+	return &CreateTranscriptionRequest{}
+}
+
+// CreateTranscriptionRequest获取文件路径
+func (c *CreateTranscriptionRequest) GetFile() string {
 	return strings.TrimRight(c.FilePath, "/") + "/" + c.FileName
 }

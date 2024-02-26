@@ -29,3 +29,7 @@ func (i *impl) CreateSpeech(ctx context.Context, req *audio.CreateSpeechRequest)
 	speechResp.Message = fmt.Sprintf("创建[%s]语音文件成功!", req.GetFile())
 	return speechResp, nil
 }
+
+func (i *impl) CreateTranscription(ctx context.Context, req *audio.CreateTranscriptionRequest) (*audio.CreateSpeechResponse, error) {
+	return nil, nil
+}
