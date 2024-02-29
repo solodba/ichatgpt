@@ -13,7 +13,7 @@ const (
 // Audio功能接口
 type Service interface {
 	CreateSpeech(context.Context, *CreateSpeechRequest) (*CreateSpeechResponse, error)
-	CreateTranscription(context.Context, *CreateTranscriptionRequest) (*CreateSpeechResponse, error)
+	CreateTranscription(context.Context, *CreateTranscriptionRequest) (*CreateTranscriptionResponse, error)
 }
 
 // CreateSpeechRequest结构体

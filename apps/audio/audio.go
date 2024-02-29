@@ -28,16 +28,16 @@ type WordItem struct {
 
 // SegmentItem结构体
 type SegmentItem struct {
-	Id               int    `json:"id"`
-	Seek             int    `json:"seek"`
-	Start            int    `json:"start"`
-	End              int    `json:"end"`
-	Text             string `json:"text"`
-	Tokens           []int  `json:"tokens"`
-	Temperature      int    `json:"temperature"`
-	AvgLogprob       int    `json:"avg_logprob"`
-	CompressionRatio int    `json:"compression_ratio"`
-	NoSpeechProb     int    `json:"no_speech_prob"`
+	Id               int     `json:"id"`
+	Seek             int     `json:"seek"`
+	Start            float64 `json:"start"`
+	End              float64 `json:"end"`
+	Text             string  `json:"text"`
+	Tokens           []int   `json:"tokens"`
+	Temperature      float64 `json:"temperature"`
+	AvgLogprob       float64 `json:"avg_logprob"`
+	CompressionRatio float64 `json:"compression_ratio"`
+	NoSpeechProb     float64 `json:"no_speech_prob"`
 }
 
 // WordItem结构体构造函数

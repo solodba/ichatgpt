@@ -30,6 +30,12 @@ func (i *impl) CreateSpeech(ctx context.Context, req *audio.CreateSpeechRequest)
 	return speechResp, nil
 }
 
-func (i *impl) CreateTranscription(ctx context.Context, req *audio.CreateTranscriptionRequest) (*audio.CreateSpeechResponse, error) {
-	return nil, nil
+func (i *impl) CreateTranscription(ctx context.Context, req *audio.CreateTranscriptionRequest) (*audio.CreateTranscriptionResponse, error) {
+	openaiTranscriptionReq := i.Req2TranscriptionConvert(req)
+	openaiTranscriptionResp, err := i.client.CreateTranscription(ctx, *openaiTranscriptionReq)
+	if err != nil {
+		return nil, err
+	}
+	transcriptionResp := i.Resp2TranscriptionConvert(&openaiTranscriptionResp)
+	return transcriptionResp, nil
 }
