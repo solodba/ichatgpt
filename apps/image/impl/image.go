@@ -15,3 +15,16 @@ func (i *impl) CreateImage(ctx context.Context, req *image.CreateImageRequest) (
 	imageResp := i.Resp2ImageConvert(openaiImageResp)
 	return imageResp, nil
 }
+
+func (i *impl) CreateEditImage(ctx context.Context, req *image.CreateEditImageRequest) (*image.CreateImageResponse, error) {
+	openaiImageEditReq, err := i.Req2ImageEditConvert(req)
+	if err != nil {
+		return nil, err
+	}
+	openaiImageEditResp, err := i.client.CreateEditImage(ctx, *openaiImageEditReq)
+	if err != nil {
+		return nil, err
+	}
+	imageEditResp := i.Resp2ImageConvert(openaiImageEditResp)
+	return imageEditResp, nil
+}

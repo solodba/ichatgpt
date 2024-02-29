@@ -9,7 +9,8 @@ type CreateImageResponseItem struct {
 
 // CreateImageResponse结构体
 type CreateImageResponse struct {
-	Data []*CreateImageResponseItem `json:"data"`
+	Created int64                      `json:"created"`
+	Data    []*CreateImageResponseItem `json:"data"`
 }
 
 // CreateImageResponse结构体构造函数
