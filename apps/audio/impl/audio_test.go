@@ -32,6 +32,7 @@ func TestCreateTranscription(t *testing.T) {
 	req.FilePath = "audio"
 	req.Model = "whisper-1"
 	req.Language = "zh"
+	req.ResponseFormat = "json"
 	transcriptionResp, err := svc.CreateTranscription(ctx, req)
 	if err != nil {
 		t.Fatal(err)
