@@ -10,8 +10,8 @@ func NewCreateSpeechResponse() *CreateSpeechResponse {
 	return &CreateSpeechResponse{}
 }
 
-// CreateTranscriptionResponse结构体
-type CreateTranscriptionResponse struct {
+// CreateAudioResponse结构体
+type CreateAudioResponse struct {
 	Language string         `json:"language"`
 	Duration float64        `json:"duration"`
 	Text     string         `json:"text"`
@@ -52,9 +52,9 @@ func NewSegmentItem() *SegmentItem {
 	}
 }
 
-// CreateTranscriptionResponse结构体构造函数
-func NewCreateTranscriptionResponse() *CreateTranscriptionResponse {
-	return &CreateTranscriptionResponse{
+// CreateAudioResponse结构体构造函数
+func NewCreateAudioResponse() *CreateAudioResponse {
+	return &CreateAudioResponse{
 		Words:    make([]*WordItem, 0),
 		Segments: make([]*SegmentItem, 0),
 	}

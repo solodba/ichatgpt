@@ -26,17 +26,17 @@ func (i *impl) Req2TranscriptionConvert(req *audio.CreateTranscriptionRequest) *
 	}
 }
 
-func (i *impl) Resp2TranscriptionConvert(audioResp *openapi.AudioResponse) *audio.CreateTranscriptionResponse {
-	return &audio.CreateTranscriptionResponse{
+func (i *impl) Resp2AudioConvert(audioResp *openapi.AudioResponse) *audio.CreateAudioResponse {
+	return &audio.CreateAudioResponse{
 		Language: audioResp.Language,
 		Duration: audioResp.Duration,
 		Words:    []*audio.WordItem{},
-		Segments: i.Resp2TranscriptionSegmentsConvert(audioResp),
+		Segments: i.Resp2AudioSegmentsConvert(audioResp),
 		Text:     audioResp.Text,
 	}
 }
 
-func (i *impl) Resp2TranscriptionSegmentsConvert(audioRespSegments *openapi.AudioResponse) []*audio.SegmentItem {
+func (i *impl) Resp2AudioSegmentsConvert(audioRespSegments *openapi.AudioResponse) []*audio.SegmentItem {
 	audioSegments := make([]*audio.SegmentItem, 0)
 	for _, item := range audioRespSegments.Segments {
 		audioSegments = append(audioSegments, &audio.SegmentItem{
@@ -53,4 +53,14 @@ func (i *impl) Resp2TranscriptionSegmentsConvert(audioRespSegments *openapi.Audi
 		})
 	}
 	return audioSegments
+}
+
+func (i *impl) Req2TranslationConvert(req *audio.CreateTranslationRequest) *openapi.AudioRequest {
+	return &openapi.AudioRequest{
+		Model:       req.Model,
+		FilePath:    req.GetFile(),
+		Prompt:      req.Prompt,
+		Temperature: req.Temperature,
+		Format:      openapi.AudioResponseFormat(req.ResponseFormat),
+	}
 }
