@@ -44,3 +44,13 @@ type DeleteFileResponse struct {
 func NewDeleteFileResponse() *DeleteFileResponse {
 	return &DeleteFileResponse{}
 }
+
+// RetrieveFileContentResponse结构体
+type RetrieveFileContentResponse struct {
+	Message string `json:"message"`
+}
+
+// RetrieveFileContentResponse结构体构造函数
+func NewRetrieveFileContentResponse() *RetrieveFileContentResponse {
+	return &RetrieveFileContentResponse{}
+}

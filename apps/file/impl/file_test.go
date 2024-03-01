@@ -30,7 +30,7 @@ func TestListFile(t *testing.T) {
 
 func TestRetrieveFile(t *testing.T) {
 	retrieveFileReq := file.NewRetrieveFileRequest()
-	retrieveFileReq.FileId = "file-XyrHCz4GYmcwOzAyVIWfF7I2"
+	retrieveFileReq.FileId = "file-XcsjryvD4YbWxwyblju5FZ0H"
 	retrieveFileResp, err := svc.RetrieveFile(ctx, retrieveFileReq)
 	if err != nil {
 		t.Fatal(err)
@@ -40,10 +40,22 @@ func TestRetrieveFile(t *testing.T) {
 
 func TestDeleteFile(t *testing.T) {
 	deleteFileReq := file.NewDeleteFileRequest()
-	deleteFileReq.FileId = "file-XyrHCz4GYmcwOzAyVIWfF7I2"
+	deleteFileReq.FileId = "file-XcsjryvD4YbWxwyblju5FZ0H"
 	deleteFileResp, err := svc.DeleteFile(ctx, deleteFileReq)
 	if err != nil {
 		t.Fatal(err)
 	}
 	t.Log(tools.MustToJson(deleteFileResp))
+}
+
+func TestRetrieveFileContent(t *testing.T) {
+	retrieveFileContentReq := file.NewRetrieveFileContentRequest()
+	retrieveFileContentReq.FileId = "file-XcsjryvD4YbWxwyblju5FZ0H"
+	retrieveFileContentReq.FilePath = "file"
+	retrieveFileContentReq.FileName = "test.jsonl"
+	retrieveFileContentResp, err := svc.RetrieveFileContent(ctx, retrieveFileContentReq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(tools.MustToJson(retrieveFileContentResp))
 }

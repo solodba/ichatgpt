@@ -3,6 +3,8 @@ package impl
 import (
 	"context"
 	"fmt"
+	"io"
+	"os"
 
 	"github.com/solodba/ichatgpt/apps/file"
 )
@@ -42,4 +44,23 @@ func (i *impl) DeleteFile(ctx context.Context, req *file.DeleteFileRequest) (*fi
 	deleteFileResp := file.NewDeleteFileResponse()
 	deleteFileResp.Message = fmt.Sprintf("删除文件[%s]成功!", req.FileId)
 	return deleteFileResp, nil
+}
+
+func (i *impl) RetrieveFileContent(ctx context.Context, req *file.RetrieveFileContentRequest) (*file.RetrieveFileContentResponse, error) {
+	openaiFileContent, err := i.client.GetFileContent(ctx, req.FileId)
+	if err != nil {
+		return nil, err
+	}
+	f, err := os.OpenFile(req.GetFile(), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+	_, err = io.Copy(f, openaiFileContent)
+	if err != nil {
+		return nil, err
+	}
+	retrieveFileContentResp := file.NewRetrieveFileContentResponse()
+	retrieveFileContentResp.Message = fmt.Sprintf("获取[%s]文件内容成功, 并生成[%s]文件!", req.FileId, req.GetFile())
+	return retrieveFileContentResp, nil
 }
