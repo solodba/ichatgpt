@@ -14,10 +14,10 @@ var (
 
 func TestCreateImage(t *testing.T) {
 	imageReq := image.NewCreateImageRequest()
-	imageReq.Prompt = "贝雷帽"
-	imageReq.Model = "dall-e-3"
+	imageReq.Prompt = "cap"
+	imageReq.Model = "dall-e-2"
 	imageReq.N = 1
-	imageReq.Size = "1024x1024"
+	imageReq.Size = "256x256"
 	imageResp, err := svc.CreateImage(ctx, imageReq)
 	if err != nil {
 		t.Fatal(err)
@@ -29,12 +29,12 @@ func TestCreateImage(t *testing.T) {
 func TestCreateEditImage(t *testing.T) {
 	imageEditReq := image.NewCreateEditImageRequest()
 	imageEditReq.ImageFilePath = "image"
-	imageEditReq.ImageFileName = "小狗.png"
+	imageEditReq.ImageFileName = "dog.rgba"
 	imageEditReq.MaskFilePath = "image"
-	imageEditReq.MaskFileName = "贝雷帽.png"
-	imageEditReq.Prompt = "小狗带贝雷帽"
+	imageEditReq.MaskFileName = "mask.rgba"
+	imageEditReq.Prompt = "小狗带帽子"
 	imageEditReq.N = 2
-	imageEditReq.Size = "1024x1024"
+	imageEditReq.Size = "256x256"
 	imageEditReq.ResponseFormat = "url"
 	imageEditResp, err := svc.CreateEditImage(ctx, imageEditReq)
 	if err != nil {
