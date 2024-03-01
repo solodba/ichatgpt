@@ -1,15 +1,10 @@
 package impl_test
 
 import (
-	"context"
 	"testing"
 
 	"github.com/solodba/ichatgpt/apps/image"
 	"github.com/solodba/ichatgpt/test/tools"
-)
-
-var (
-	ctx = context.Background()
 )
 
 func TestCreateImage(t *testing.T) {

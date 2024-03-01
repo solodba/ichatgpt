@@ -1,15 +1,10 @@
 package impl_test
 
 import (
-	"context"
 	"testing"
 
 	"github.com/solodba/ichatgpt/apps/audio"
 	"github.com/solodba/ichatgpt/test/tools"
-)
-
-var (
-	ctx = context.Background()
 )
 
 func TestCreateSpeech(t *testing.T) {
