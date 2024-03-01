@@ -30,10 +30,20 @@ func TestListFile(t *testing.T) {
 
 func TestRetrieveFile(t *testing.T) {
 	retrieveFileReq := file.NewRetrieveFileRequest()
-	retrieveFileReq.FileId = "file-Jee40QArmA7ltu5X4OwLTLK7"
+	retrieveFileReq.FileId = "file-XyrHCz4GYmcwOzAyVIWfF7I2"
 	retrieveFileResp, err := svc.RetrieveFile(ctx, retrieveFileReq)
 	if err != nil {
 		t.Fatal(err)
 	}
 	t.Log(tools.MustToJson(retrieveFileResp))
+}
+
+func TestDeleteFile(t *testing.T) {
+	deleteFileReq := file.NewDeleteFileRequest()
+	deleteFileReq.FileId = "file-XyrHCz4GYmcwOzAyVIWfF7I2"
+	deleteFileResp, err := svc.DeleteFile(ctx, deleteFileReq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(tools.MustToJson(deleteFileResp))
 }

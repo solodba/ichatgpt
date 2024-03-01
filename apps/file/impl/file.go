@@ -2,6 +2,7 @@ package impl
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/solodba/ichatgpt/apps/file"
 )
@@ -31,4 +32,14 @@ func (i *impl) RetrieveFile(ctx context.Context, req *file.RetrieveFileRequest) 
 		return nil, err
 	}
 	return i.Resp2UploadFileConvert(&openaiRetrieveFile), nil
+}
+
+func (i *impl) DeleteFile(ctx context.Context, req *file.DeleteFileRequest) (*file.DeleteFileResponse, error) {
+	err := i.client.DeleteFile(ctx, req.FileId)
+	if err != nil {
+		return nil, err
+	}
+	deleteFileResp := file.NewDeleteFileResponse()
+	deleteFileResp.Message = fmt.Sprintf("删除文件[%s]成功!", req.FileId)
+	return deleteFileResp, nil
 }

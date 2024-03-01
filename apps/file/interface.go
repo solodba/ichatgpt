@@ -15,6 +15,7 @@ type Service interface {
 	UploadFile(context.Context, *UploadFileRequest) (*FileResponseItem, error)
 	ListFile(context.Context, *ListFileRequest) (*FileResponse, error)
 	RetrieveFile(context.Context, *RetrieveFileRequest) (*FileResponseItem, error)
+	DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error)
 }
 
 // UploadFileRequest结构体
@@ -52,4 +53,14 @@ type RetrieveFileRequest struct {
 // RetrieveFileRequest结构体构造函数
 func NewRetrieveFileRequest() *RetrieveFileRequest {
 	return &RetrieveFileRequest{}
+}
+
+// DeleteFileRequest结构体
+type DeleteFileRequest struct {
+	FileId string `json:"file_id"`
+}
+
+// DeleteFileRequest结构体构造函数
+func NewDeleteFileRequest() *DeleteFileRequest {
+	return &DeleteFileRequest{}
 }

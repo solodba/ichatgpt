@@ -34,3 +34,13 @@ func NewFileResponseItem() *FileResponseItem {
 func (f *FileResponse) AddItems(items ...*FileResponseItem) {
 	f.Files = append(f.Files, items...)
 }
+
+// DeleteFileResponse结构体
+type DeleteFileResponse struct {
+	Message string `json:"message"`
+}
+
+// DeleteFileResponse结构体构造函数
+func NewDeleteFileResponse() *DeleteFileResponse {
+	return &DeleteFileResponse{}
+}
