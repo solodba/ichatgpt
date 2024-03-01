@@ -25,3 +25,13 @@ func TestRetrieveModel(t *testing.T) {
 	}
 	t.Log(tools.MustToJson(modelResp))
 }
+
+func TestDeleteFineTunedModel(t *testing.T) {
+	deleteFineTunedModelReq := model.NewDeleteFineTunedModelRequest()
+	deleteFineTunedModelReq.Model = "ft:gpt-3.5-turbo-1106:personal::8veUGpUa"
+	deleteFineTunedModelResp, err := svc.DeleteFineTunedModel(ctx, deleteFineTunedModelReq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(tools.MustToJson(deleteFineTunedModelResp))
+}

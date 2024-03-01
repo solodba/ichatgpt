@@ -25,3 +25,15 @@ func NewModelsResponse() *ModelsResponse {
 func (m *ModelsResponse) AddItems(items ...*ModelsItem) {
 	m.ListModels = append(m.ListModels, items...)
 }
+
+// DeleteFineTunedModelResponse结构体
+type DeleteFineTunedModelResponse struct {
+	Id      string `json:"id"`
+	Object  string `json:"object"`
+	Deleted bool   `json:"deleted"`
+}
+
+// DeleteFineTunedModelResponse结构体构造函数
+func NewDeleteFineTunedModelResponse() *DeleteFineTunedModelResponse {
+	return &DeleteFineTunedModelResponse{}
+}
