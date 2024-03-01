@@ -9,9 +9,19 @@ import (
 
 func TestListModels(t *testing.T) {
 	listModelsReq := model.NewListModelsRequest()
-	listModelsResp, err := svc.ListModels(ctx, listModelsReq)
+	modelResp, err := svc.ListModels(ctx, listModelsReq)
 	if err != nil {
 		t.Fatal(err)
 	}
-	t.Log(tools.MustToJson(listModelsResp))
+	t.Log(tools.MustToJson(modelResp))
+}
+
+func TestRetrieveModel(t *testing.T) {
+	retrieveModelReq := model.NewRetrieveModelRequest()
+	retrieveModelReq.Model = "gpt-4-0125-preview"
+	modelResp, err := svc.RetrieveModel(ctx, retrieveModelReq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(tools.MustToJson(modelResp))
 }

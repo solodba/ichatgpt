@@ -6,12 +6,25 @@ import (
 	"github.com/solodba/ichatgpt/apps/model"
 )
 
-func (i *impl) ListModels(ctx context.Context, req *model.ListModelsRequest) (*model.ListModelsResponse, error) {
+func (i *impl) ListModels(ctx context.Context, req *model.ListModelsRequest) (*model.ModelsResponse, error) {
 	openaiModelsResp, err := i.client.ListModels(ctx)
 	if err != nil {
 		return nil, err
 	}
-	listModelsResp := i.Resp2ModelConvert(&openaiModelsResp)
-	listModelsResp.Total = len(listModelsResp.ListModels)
-	return listModelsResp, nil
+	modelsResp := i.Resp2ModelConvert(&openaiModelsResp)
+	modelsResp.Total = len(modelsResp.ListModels)
+	return modelsResp, nil
+}
+
+func (i *impl) RetrieveModel(ctx context.Context, req *model.RetrieveModelRequest) (*model.ModelsItem, error) {
+	openaiModelsResp, err := i.client.GetModel(ctx, req.Model)
+	if err != nil {
+		return nil, err
+	}
+	return &model.ModelsItem{
+		Id:      openaiModelsResp.ID,
+		Created: openaiModelsResp.CreatedAt,
+		Object:  openaiModelsResp.Object,
+		OwnerBy: openaiModelsResp.OwnedBy,
+	}, nil
 }

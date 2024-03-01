@@ -5,21 +5,21 @@ import (
 	"github.com/solodba/ichatgpt/apps/model"
 )
 
-func (i *impl) Resp2ModelConvert(req *openapi.ModelsList) *model.ListModelsResponse {
-	return &model.ListModelsResponse{
+func (i *impl) Resp2ModelConvert(req *openapi.ModelsList) *model.ModelsResponse {
+	return &model.ModelsResponse{
 		ListModels: i.Resp2Model(req.Models),
 	}
 }
 
-func (i *impl) Resp2Model(openaiModel []openapi.Model) []*model.ListModelsItem {
-	listModels := make([]*model.ListModelsItem, 0)
+func (i *impl) Resp2Model(openaiModel []openapi.Model) []*model.ModelsItem {
+	models := make([]*model.ModelsItem, 0)
 	for _, item := range openaiModel {
-		listModels = append(listModels, &model.ListModelsItem{
+		models = append(models, &model.ModelsItem{
 			Id:      item.ID,
 			Created: item.CreatedAt,
 			Object:  item.Object,
 			OwnerBy: item.OwnedBy,
 		})
 	}
-	return listModels
+	return models
 }
