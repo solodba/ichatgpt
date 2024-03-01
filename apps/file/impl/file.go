@@ -24,3 +24,11 @@ func (i *impl) ListFile(ctx context.Context, req *file.ListFileRequest) (*file.F
 	openaiFileResp.Total = len(openaiFileResp.Files)
 	return openaiFileResp, nil
 }
+
+func (i *impl) RetrieveFile(ctx context.Context, req *file.RetrieveFileRequest) (*file.FileResponseItem, error) {
+	openaiRetrieveFile, err := i.client.GetFile(ctx, req.FileId)
+	if err != nil {
+		return nil, err
+	}
+	return i.Resp2UploadFileConvert(&openaiRetrieveFile), nil
+}

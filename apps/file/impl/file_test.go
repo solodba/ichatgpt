@@ -27,3 +27,13 @@ func TestListFile(t *testing.T) {
 	}
 	t.Log(tools.MustToJson(listFileResp))
 }
+
+func TestRetrieveFile(t *testing.T) {
+	retrieveFileReq := file.NewRetrieveFileRequest()
+	retrieveFileReq.FileId = "file-Jee40QArmA7ltu5X4OwLTLK7"
+	retrieveFileResp, err := svc.RetrieveFile(ctx, retrieveFileReq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(tools.MustToJson(retrieveFileResp))
+}

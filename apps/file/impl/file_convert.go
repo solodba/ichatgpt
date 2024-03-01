@@ -8,6 +8,7 @@ import (
 func (i *impl) Req2UploadFileConvert(req *file.UploadFileRequest) *openapi.FileRequest {
 	return &openapi.FileRequest{
 		FilePath: req.GetFile(),
+		FileName: req.FileName,
 		Purpose:  req.Purpose,
 	}
 }

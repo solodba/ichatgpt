@@ -14,6 +14,7 @@ const (
 type Service interface {
 	UploadFile(context.Context, *UploadFileRequest) (*FileResponseItem, error)
 	ListFile(context.Context, *ListFileRequest) (*FileResponse, error)
+	RetrieveFile(context.Context, *RetrieveFileRequest) (*FileResponseItem, error)
 }
 
 // UploadFileRequest结构体
@@ -41,4 +42,14 @@ type ListFileRequest struct {
 // ListFileRequest结构体结构体
 func NewListFileRequest() *ListFileRequest {
 	return &ListFileRequest{}
+}
+
+// RetrieveFileRequest结构体
+type RetrieveFileRequest struct {
+	FileId string `json:"file_id"`
+}
+
+// RetrieveFileRequest结构体构造函数
+func NewRetrieveFileRequest() *RetrieveFileRequest {
+	return &RetrieveFileRequest{}
 }
