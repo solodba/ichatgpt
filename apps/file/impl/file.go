@@ -14,3 +14,13 @@ func (i *impl) UploadFile(ctx context.Context, req *file.UploadFileRequest) (*fi
 	}
 	return i.Resp2UploadFileConvert(&openaiFile), nil
 }
+
+func (i *impl) ListFile(ctx context.Context, req *file.ListFileRequest) (*file.FileResponse, error) {
+	openaiListFiles, err := i.client.ListFiles(ctx)
+	if err != nil {
+		return nil, err
+	}
+	openaiFileResp := i.Resp2ListFilesConvert(openaiListFiles)
+	openaiFileResp.Total = len(openaiFileResp.Files)
+	return openaiFileResp, nil
+}

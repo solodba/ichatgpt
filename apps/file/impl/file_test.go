@@ -18,3 +18,12 @@ func TestUploadFile(t *testing.T) {
 	}
 	t.Log(tools.MustToJson(uploadFileResp))
 }
+
+func TestListFile(t *testing.T) {
+	listFileReq := file.NewListFileRequest()
+	listFileResp, err := svc.ListFile(ctx, listFileReq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(tools.MustToJson(listFileResp))
+}

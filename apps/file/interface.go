@@ -13,6 +13,7 @@ const (
 // File功能接口
 type Service interface {
 	UploadFile(context.Context, *UploadFileRequest) (*FileResponseItem, error)
+	ListFile(context.Context, *ListFileRequest) (*FileResponse, error)
 }
 
 // UploadFileRequest结构体
@@ -30,4 +31,14 @@ func NewUploadFileRequest() *UploadFileRequest {
 // UploadFileRequest添加方法
 func (u *UploadFileRequest) GetFile() string {
 	return strings.TrimRight(u.FilePath, "/") + "/" + u.FileName
+}
+
+// ListFileRequest结构体
+type ListFileRequest struct {
+	Purpose string `json:"purpose"`
+}
+
+// ListFileRequest结构体结构体
+func NewListFileRequest() *ListFileRequest {
+	return &ListFileRequest{}
 }

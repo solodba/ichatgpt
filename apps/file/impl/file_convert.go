@@ -24,3 +24,11 @@ func (i *impl) Resp2UploadFileConvert(resp *openapi.File) *file.FileResponseItem
 		StatusDetails: resp.StatusDetails,
 	}
 }
+
+func (i *impl) Resp2ListFilesConvert(resp openapi.FilesList) *file.FileResponse {
+	fileResp := file.NewFileResponse()
+	for _, item := range resp.Files {
+		fileResp.AddItems(i.Resp2UploadFileConvert(&item))
+	}
+	return fileResp
+}
