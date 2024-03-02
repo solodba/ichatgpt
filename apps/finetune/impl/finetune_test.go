@@ -27,3 +27,13 @@ func TestListFineTuneJobEvents(t *testing.T) {
 	}
 	t.Log(tools.MustToJson(fineTuneJobEventsResp))
 }
+
+func TestRetrieveFineTuneJob(t *testing.T) {
+	retrieveFineTuneJobReq := finetune.NewRetrieveFineTuneJobRequest()
+	retrieveFineTuneJobReq.FineTuningJobId = "ftjob-EV9nv185osolVAis9qCi9Pfy"
+	retrieveFineTuneJobResp, err := svc.RetrieveFineTuneJob(ctx, retrieveFineTuneJobReq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(tools.MustToJson(retrieveFineTuneJobResp))
+}

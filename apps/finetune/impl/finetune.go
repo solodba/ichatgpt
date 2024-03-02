@@ -24,3 +24,11 @@ func (i *impl) ListFineTuneJobEvents(ctx context.Context, req *finetune.ListFine
 	fineTuneJobEventsResp.Total = len(fineTuneJobEventsResp.FineTuneJobEventList)
 	return fineTuneJobEventsResp, nil
 }
+
+func (i *impl) RetrieveFineTuneJob(ctx context.Context, req *finetune.RetrieveFineTuneJobRequest) (*finetune.FineTuneJobItem, error) {
+	openaiFineTuneJobResp, err := i.client.RetrieveFineTuningJob(ctx, req.FineTuningJobId)
+	if err != nil {
+		return nil, err
+	}
+	return i.OpenaiFineTuneJob2Resp(&openaiFineTuneJobResp), nil
+}
