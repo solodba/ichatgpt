@@ -48,3 +48,18 @@ func (i *impl) Resp2HyperparametersConvert(hy openapi.Hyperparameters) *finetune
 		NEpochs: hy.Epochs,
 	}
 }
+
+func (i *impl) OpenaiFineTuneJobEvents2Resp(resp openapi.FineTuningJobEventList) *finetune.FineTuneJobEventResponse {
+	fineTuneJobEventList := make([]*finetune.FineTuneJobEventItem, 0)
+	for _, item := range resp.Data {
+		fineTuneJobEventList = append(fineTuneJobEventList, &finetune.FineTuneJobEventItem{
+			CreatedAt: item.CreatedAt,
+			Level:     item.Level,
+			Message:   item.Message,
+			Object:    item.Object,
+		})
+	}
+	return &finetune.FineTuneJobEventResponse{
+		FineTuneJobEventList: fineTuneJobEventList,
+	}
+}

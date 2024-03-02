@@ -10,6 +10,7 @@ const (
 // Model功能接口
 type Service interface {
 	CreateFineTuneJob(context.Context, *CreateFineTuneJobRequest) (*FineTuneJobItem, error)
+	ListFineTuneJobEvents(context.Context, *ListFineTuneJobEventsRequest) (*FineTuneJobEventResponse, error)
 }
 
 // CreateFineTuneJobRequest结构体
@@ -38,4 +39,14 @@ func NewCreateFineTuneJobRequest() *CreateFineTuneJobRequest {
 // Hyperparameters结构体构造函数
 func NewHyperparameters() *Hyperparameters {
 	return &Hyperparameters{}
+}
+
+// ListFineTuneJobEventsRequest结构体
+type ListFineTuneJobEventsRequest struct {
+	FineTuningJobId string `json:"fine_tuning_job_id"`
+}
+
+// ListFineTuneJobEventsRequest结构体构造函数
+func NewListFineTuneJobEventsRequest() *ListFineTuneJobEventsRequest {
+	return &ListFineTuneJobEventsRequest{}
 }

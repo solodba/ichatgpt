@@ -17,3 +17,13 @@ func TestCreateFineTuneJob(t *testing.T) {
 	}
 	t.Log(tools.MustToJson(fineTuneJobResp))
 }
+
+func TestListFineTuneJobEvents(t *testing.T) {
+	fineTuneJobEventsReq := finetune.NewListFineTuneJobEventsRequest()
+	fineTuneJobEventsReq.FineTuningJobId = "ftjob-EV9nv185osolVAis9qCi9Pfy"
+	fineTuneJobEventsResp, err := svc.ListFineTuneJobEvents(ctx, fineTuneJobEventsReq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(tools.MustToJson(fineTuneJobEventsResp))
+}

@@ -55,3 +55,35 @@ func NewFineTuneJobResponse() *FineTuneJobResponse {
 func (f *FineTuneJobResponse) AddItems(items ...*FineTuneJobItem) {
 	f.FineTuneJobList = append(f.FineTuneJobList, items...)
 }
+
+// FineTuneJobEventItem结构体
+type FineTuneJobEventItem struct {
+	Id        string `json:"id"`
+	CreatedAt int64  `json:"created_at"`
+	Level     string `json:"level"`
+	Message   string `json:"message"`
+	Object    string `json:"object"`
+}
+
+// FineTuneJobEventResponse结构体
+type FineTuneJobEventResponse struct {
+	Total                int                     `json:"total"`
+	FineTuneJobEventList []*FineTuneJobEventItem `json:"fine_tune_job_event_list"`
+}
+
+// FineTuneJobEventItem结构体构造函数
+func NewFineTuneJobEventItem() *FineTuneJobEventItem {
+	return &FineTuneJobEventItem{}
+}
+
+// FineTuneJobEventResponse结构体构造函数
+func NewFineTuneJobEventResponse() *FineTuneJobEventResponse {
+	return &FineTuneJobEventResponse{
+		FineTuneJobEventList: make([]*FineTuneJobEventItem, 0),
+	}
+}
+
+// FineTuneJobEventResponse结构体构添加方法
+func (f *FineTuneJobEventResponse) AddItems(items ...*FineTuneJobEventItem) {
+	f.FineTuneJobEventList = append(f.FineTuneJobEventList, items...)
+}
