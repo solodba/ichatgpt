@@ -12,6 +12,7 @@ type Service interface {
 	CreateFineTuneJob(context.Context, *CreateFineTuneJobRequest) (*FineTuneJobItem, error)
 	ListFineTuneJobEvents(context.Context, *ListFineTuneJobEventsRequest) (*FineTuneJobEventResponse, error)
 	RetrieveFineTuneJob(context.Context, *RetrieveFineTuneJobRequest) (*FineTuneJobItem, error)
+	CancelFineTuneJob(context.Context, *CancelFineTuneJobRequest) (*FineTuneJobItem, error)
 }
 
 // CreateFineTuneJobRequest结构体
@@ -60,4 +61,14 @@ type RetrieveFineTuneJobRequest struct {
 // RetrieveFineTuneJobRequest结构体构造函数
 func NewRetrieveFineTuneJobRequest() *RetrieveFineTuneJobRequest {
 	return &RetrieveFineTuneJobRequest{}
+}
+
+// CancelFineTuneJobRequest结构体
+type CancelFineTuneJobRequest struct {
+	FineTuningJobId string `json:"fine_tuning_job_id"`
+}
+
+// CancelFineTuneJobRequest结构体构造函数
+func NewCancelFineTuneJobRequest() *CancelFineTuneJobRequest {
+	return &CancelFineTuneJobRequest{}
 }

@@ -32,3 +32,11 @@ func (i *impl) RetrieveFineTuneJob(ctx context.Context, req *finetune.RetrieveFi
 	}
 	return i.OpenaiFineTuneJob2Resp(&openaiFineTuneJobResp), nil
 }
+
+func (i *impl) CancelFineTuneJob(ctx context.Context, req *finetune.CancelFineTuneJobRequest) (*finetune.FineTuneJobItem, error) {
+	openaiCancelFineTuneJobResp, err := i.client.CancelFineTuningJob(ctx, req.FineTuningJobId)
+	if err != nil {
+		return nil, err
+	}
+	return i.OpenaiFineTuneJob2Resp(&openaiCancelFineTuneJobResp), nil
+}
