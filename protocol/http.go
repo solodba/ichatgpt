@@ -8,10 +8,11 @@ import (
 
 	restfulspec "github.com/emicklei/go-restful-openapi/v2"
 	"github.com/emicklei/go-restful/v3"
+	"github.com/go-openapi/spec"
 	"github.com/solodba/ichatgpt/conf"
 	"github.com/solodba/mcube/apps"
 	"github.com/solodba/mcube/logger"
-	"github.com/solodba/mcube/swagger"
+	"github.com/solodba/mcube/version"
 )
 
 // Http服务结构体
@@ -90,7 +91,7 @@ func (s *HttpService) Start() error {
 	config := restfulspec.Config{
 		WebServices:                   restful.RegisteredWebServices(),
 		APIPath:                       "/apidocs.json",
-		PostBuildSwaggerObjectHandler: swagger.DocsMkube,
+		PostBuildSwaggerObjectHandler: DocsIChatGPT,
 		DefinitionNameHandler: func(name string) string {
 			if name == "state" || name == "sizeCache" || name == "unknownFields" {
 				return ""
@@ -119,4 +120,28 @@ func (s *HttpService) Stop() error {
 		return fmt.Errorf("graceful shutdown timeout, force exit")
 	}
 	return nil
+}
+
+// ichatgpt Swagger文档
+func DocsIChatGPT(swo *spec.Swagger) {
+	swo.Info = &spec.Info{
+		InfoProps: spec.InfoProps{
+			Title:       "ChatGPT中心",
+			Description: "my ichatgpt center",
+			Contact: &spec.ContactInfo{
+				ContactInfoProps: spec.ContactInfoProps{
+					Name:  "john",
+					Email: "john@doe.rp",
+					URL:   "http://johndoe.org",
+				},
+			},
+			License: &spec.License{
+				LicenseProps: spec.LicenseProps{
+					Name: "MIT",
+					URL:  "http://mit.org",
+				},
+			},
+			Version: version.ShortVersion(),
+		},
+	}
 }

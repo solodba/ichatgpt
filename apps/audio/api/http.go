@@ -4,7 +4,6 @@ import (
 	restfulspec "github.com/emicklei/go-restful-openapi"
 	"github.com/emicklei/go-restful/v3"
 	"github.com/solodba/ichatgpt/apps/audio"
-	"github.com/solodba/ichatgpt/apps/chat"
 	"github.com/solodba/mcube/apps"
 )
 
@@ -15,7 +14,7 @@ type handler struct {
 
 // 实现注册restful实例Name方法
 func (h *handler) Name() string {
-	return chat.AppName
+	return audio.AppName
 }
 
 // 实现注册restful实例Conf方法

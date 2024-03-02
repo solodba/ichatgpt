@@ -8,8 +8,9 @@ require (
 	github.com/emicklei/go-restful-openapi v1.4.1
 	github.com/emicklei/go-restful-openapi/v2 v2.9.1
 	github.com/emicklei/go-restful/v3 v3.11.3
+	github.com/go-openapi/spec v0.20.9
 	github.com/sashabaranov/go-openai v1.20.2
-	github.com/solodba/mcube v1.0.4
+	github.com/solodba/mcube v0.0.1
 	github.com/spf13/cobra v1.8.0
 )
 
@@ -22,7 +23,6 @@ require (
 	github.com/gin-gonic/gin v1.9.1 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
 	github.com/go-openapi/jsonreference v0.20.0 // indirect
-	github.com/go-openapi/spec v0.20.9 // indirect
 	github.com/go-openapi/swag v0.19.15 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
