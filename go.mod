@@ -5,8 +5,9 @@ go 1.21.5
 require (
 	github.com/BurntSushi/toml v1.3.2
 	github.com/caarlos0/env v3.5.0+incompatible
+	github.com/emicklei/go-restful-openapi v1.4.1
 	github.com/emicklei/go-restful-openapi/v2 v2.9.1
-	github.com/emicklei/go-restful/v3 v3.10.2
+	github.com/emicklei/go-restful/v3 v3.11.3
 	github.com/sashabaranov/go-openai v1.20.2
 	github.com/solodba/mcube v1.0.4
 	github.com/spf13/cobra v1.8.0
@@ -15,6 +16,7 @@ require (
 require (
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
+	github.com/emicklei/go-restful v2.9.6+incompatible // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.9.1 // indirect
