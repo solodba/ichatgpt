@@ -21,3 +21,36 @@ func (h *handler) CreateFineTuneJob(r *restful.Request, w *restful.Response) {
 	}
 	w.WriteEntity(response.NewSuccess(200, resp))
 }
+
+// 查询FineTuneJob事件
+func (h *handler) ListFineTuneJobEvents(r *restful.Request, w *restful.Response) {
+	req := finetune.NewListFineTuneJobEventsRequestFromRestful(r)
+	resp, err := h.svc.ListFineTuneJobEvents(r.Request.Context(), req)
+	if err != nil {
+		w.WriteEntity(response.NewFail(500, err.Error()))
+		return
+	}
+	w.WriteEntity(response.NewSuccess(200, resp))
+}
+
+// 查询FineTuneJob
+func (h *handler) RetrieveFineTuneJob(r *restful.Request, w *restful.Response) {
+	req := finetune.NewRetrieveFineTuneJobRequestFromRestful(r)
+	resp, err := h.svc.RetrieveFineTuneJob(r.Request.Context(), req)
+	if err != nil {
+		w.WriteEntity(response.NewFail(500, err.Error()))
+		return
+	}
+	w.WriteEntity(response.NewSuccess(200, resp))
+}
+
+// 停止FineTuneJob
+func (h *handler) CancelFineTuneJob(r *restful.Request, w *restful.Response) {
+	req := finetune.NewCancelFineTuneJobRequestFromRestful(r)
+	resp, err := h.svc.CancelFineTuneJob(r.Request.Context(), req)
+	if err != nil {
+		w.WriteEntity(response.NewFail(500, err.Error()))
+		return
+	}
+	w.WriteEntity(response.NewSuccess(200, resp))
+}

@@ -1,6 +1,10 @@
 package finetune
 
-import "context"
+import (
+	"context"
+
+	"github.com/emicklei/go-restful/v3"
+)
 
 // 模块名称
 const (
@@ -71,4 +75,25 @@ type CancelFineTuneJobRequest struct {
 // CancelFineTuneJobRequest结构体构造函数
 func NewCancelFineTuneJobRequest() *CancelFineTuneJobRequest {
 	return &CancelFineTuneJobRequest{}
+}
+
+// ListFineTuneJobEventsRequest结构体构造函数
+func NewListFineTuneJobEventsRequestFromRestful(r *restful.Request) *ListFineTuneJobEventsRequest {
+	return &ListFineTuneJobEventsRequest{
+		FineTuningJobId: r.PathParameter("fine_tuning_job_id"),
+	}
+}
+
+// RetrieveFineTuneJobRequest结构体构造函数
+func NewRetrieveFineTuneJobRequestFromRestful(r *restful.Request) *RetrieveFineTuneJobRequest {
+	return &RetrieveFineTuneJobRequest{
+		FineTuningJobId: r.PathParameter("fine_tuning_job_id"),
+	}
+}
+
+// CancelFineTuneJobRequest结构体构造函数
+func NewCancelFineTuneJobRequestFromRestful(r *restful.Request) *CancelFineTuneJobRequest {
+	return &CancelFineTuneJobRequest{
+		FineTuningJobId: r.PathParameter("fine_tuning_job_id"),
+	}
 }

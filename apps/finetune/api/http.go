@@ -40,6 +40,30 @@ func (h *handler) RegistryHandler(ws *restful.WebService) {
 		Reads(finetune.CreateFineTuneJobRequest{}).
 		Writes(finetune.FineTuneJobItem{}).
 		Returns(200, "OK", finetune.FineTuneJobItem{}))
+
+	// 查询FineTuneJob事件
+	ws.Route(ws.GET("/event/{fine_tuning_job_id}").To(h.ListFineTuneJobEvents).
+		Doc("查询FineTuneJob事件").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(finetune.ListFineTuneJobEventsRequest{}).
+		Writes(finetune.FineTuneJobEventResponse{}).
+		Returns(200, "OK", finetune.FineTuneJobEventResponse{}))
+
+	// 查询FineTuneJob
+	ws.Route(ws.GET("/{fine_tuning_job_id}").To(h.RetrieveFineTuneJob).
+		Doc("查询FineTuneJob").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(finetune.RetrieveFineTuneJobRequest{}).
+		Writes(finetune.FineTuneJobItem{}).
+		Returns(200, "OK", finetune.FineTuneJobItem{}))
+
+	// 停止FineTuneJob
+	ws.Route(ws.DELETE("/{fine_tuning_job_id}").To(h.CancelFineTuneJob).
+		Doc("停止FineTuneJob").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(finetune.CancelFineTuneJobRequest{}).
+		Writes(finetune.FineTuneJobItem{}).
+		Returns(200, "OK", finetune.FineTuneJobItem{}))
 }
 
 // 初始化函数注册restful实例
