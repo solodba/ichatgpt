@@ -6,7 +6,7 @@ import (
 	"github.com/solodba/mcube/response"
 )
 
-// 创建chat
+// 创建image
 func (h *handler) CreateImage(r *restful.Request, w *restful.Response) {
 	req := image.NewCreateImageRequest()
 	err := r.ReadEntity(req)
