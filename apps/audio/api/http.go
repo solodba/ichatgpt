@@ -34,12 +34,28 @@ func (h *handler) RegistryHandler(ws *restful.WebService) {
 	tags := []string{"Audio管理"}
 	// webservice定义路由信息
 	// 创建Speech
-	ws.Route(ws.POST("/").To(h.CreateSpeech).
+	ws.Route(ws.POST("/speech").To(h.CreateSpeech).
 		Doc("文字转语音").
 		Metadata(restfulspec.KeyOpenAPITags, tags).
 		Reads(audio.CreateSpeechRequest{}).
 		Writes(audio.CreateSpeechResponse{}).
 		Returns(200, "OK", audio.CreateSpeechResponse{}))
+
+	// 创建Transcription
+	ws.Route(ws.POST("/transcription").To(h.CreateTranscription).
+		Doc("语音转文字").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(audio.CreateTranscriptionRequest{}).
+		Writes(audio.CreateAudioResponse{}).
+		Returns(200, "OK", audio.CreateAudioResponse{}))
+
+	// 创建Translation
+	ws.Route(ws.POST("/translation").To(h.CreateTranslation).
+		Doc("语音翻译成英文").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(audio.CreateTranslationRequest{}).
+		Writes(audio.CreateAudioResponse{}).
+		Returns(200, "OK", audio.CreateAudioResponse{}))
 }
 
 // 初始化函数注册restful实例
