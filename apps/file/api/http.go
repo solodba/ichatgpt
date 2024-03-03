@@ -33,13 +33,45 @@ func (h *handler) Version() string {
 func (h *handler) RegistryHandler(ws *restful.WebService) {
 	tags := []string{"File管理"}
 	// webservice定义路由信息
-	// 创建Pod
+	// 上传文件
 	ws.Route(ws.POST("/").To(h.UploadFile).
 		Doc("上传文件").
 		Metadata(restfulspec.KeyOpenAPITags, tags).
 		Reads(file.UploadFileRequest{}).
 		Writes(file.FileResponseItem{}).
 		Returns(200, "OK", file.FileResponseItem{}))
+
+	// 查询文件
+	ws.Route(ws.GET("/").To(h.ListFile).
+		Doc("查询文件").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(file.ListFileRequest{}).
+		Writes(file.FileResponse{}).
+		Returns(200, "OK", file.FileResponse{}))
+
+	// 查询文件详情
+	ws.Route(ws.GET("/detail/{file_id}").To(h.RetrieveFile).
+		Doc("查询文件详情").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(file.RetrieveFileRequest{}).
+		Writes(file.FileResponseItem{}).
+		Returns(200, "OK", file.FileResponseItem{}))
+
+	// 查询文件内容
+	ws.Route(ws.GET("/content/{file_id}").To(h.RetrieveFileContent).
+		Doc("查询文件内容").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(file.RetrieveFileContentRequest{}).
+		Writes(file.RetrieveFileContentResponse{}).
+		Returns(200, "OK", file.RetrieveFileContentResponse{}))
+
+	// 删除文件
+	ws.Route(ws.DELETE("/{file_id}").To(h.DeleteFile).
+		Doc("删除文件").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(file.DeleteFileRequest{}).
+		Writes(file.DeleteFileRequest{}).
+		Returns(200, "OK", file.DeleteFileResponse{}))
 }
 
 // 初始化函数注册restful实例

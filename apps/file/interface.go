@@ -3,6 +3,8 @@ package file
 import (
 	"context"
 	"strings"
+
+	"github.com/emicklei/go-restful/v3"
 )
 
 // 模块名称
@@ -81,4 +83,34 @@ func NewRetrieveFileContentRequest() *RetrieveFileContentRequest {
 // RetrieveFileContentRequest添加方法
 func (r *RetrieveFileContentRequest) GetFile() string {
 	return strings.TrimRight(r.FilePath, "/") + "/" + r.FileName
+}
+
+// NewListFileRequestFromRestful结构体
+func NewListFileRequestFromRestful(r *restful.Request) *ListFileRequest {
+	return &ListFileRequest{
+		Purpose: r.QueryParameter("purpose"),
+	}
+}
+
+// RetrieveFileRequest结构体构造函数
+func NewRetrieveFileRequestFromRestful(r *restful.Request) *RetrieveFileRequest {
+	return &RetrieveFileRequest{
+		FileId: r.PathParameter("file_id"),
+	}
+}
+
+// RetrieveFileContentRequest结构体构造函数
+func NewRetrieveFileContentRequestFromRestful(r *restful.Request) *RetrieveFileContentRequest {
+	return &RetrieveFileContentRequest{
+		FileId:   r.PathParameter("file_id"),
+		FilePath: r.QueryParameter("file_path"),
+		FileName: r.QueryParameter("file_name"),
+	}
+}
+
+// DeleteFileRequest结构体构造函数
+func NewDeleteFileRequestFromRestful(r *restful.Request) *DeleteFileRequest {
+	return &DeleteFileRequest{
+		FileId: r.PathParameter("file_id"),
+	}
 }
