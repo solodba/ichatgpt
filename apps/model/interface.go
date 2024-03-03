@@ -1,6 +1,10 @@
 package model
 
-import "context"
+import (
+	"context"
+
+	"github.com/emicklei/go-restful/v3"
+)
 
 // 模块名称
 const (
@@ -41,4 +45,18 @@ type DeleteFineTunedModelRequest struct {
 // DeleteFineTunedModelRequest结构体初始化函数
 func NewDeleteFineTunedModelRequest() *DeleteFineTunedModelRequest {
 	return &DeleteFineTunedModelRequest{}
+}
+
+// RetrieveModelRequest结构体初始化函数
+func NewRetrieveModelRequestFromRestful(r *restful.Request) *RetrieveModelRequest {
+	return &RetrieveModelRequest{
+		Model: r.PathParameter("model"),
+	}
+}
+
+// DeleteFineTunedModelRequest结构体初始化函数
+func NewDeleteFineTunedModelRequestFromRestful(r *restful.Request) *DeleteFineTunedModelRequest {
+	return &DeleteFineTunedModelRequest{
+		Model: r.PathParameter("model"),
+	}
 }

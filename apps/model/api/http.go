@@ -40,6 +40,22 @@ func (h *handler) RegistryHandler(ws *restful.WebService) {
 		Reads(model.ListModelsRequest{}).
 		Writes(model.ModelsResponse{}).
 		Returns(200, "OK", model.ModelsResponse{}))
+
+	// 查询指定Model
+	ws.Route(ws.GET("/{model}").To(h.RetrieveModel).
+		Doc("查询指定Model").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(model.RetrieveModelRequest{}).
+		Writes(model.ModelsItem{}).
+		Returns(200, "OK", model.ModelsItem{}))
+
+	// 删除FineTuneModel
+	ws.Route(ws.DELETE("/{model}").To(h.DeleteFineTunedModel).
+		Doc("删除FineTune模型").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Reads(model.DeleteFineTunedModelRequest{}).
+		Writes(model.DeleteFineTunedModelResponse{}).
+		Returns(200, "OK", model.DeleteFineTunedModelResponse{}))
 }
 
 // 初始化函数注册restful实例
