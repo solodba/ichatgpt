@@ -24,13 +24,14 @@ type HttpService struct {
 
 // Http服务结构体初始化
 func NewHttpService() *HttpService {
-	r := restful.DefaultContainer
+	r := restful.NewContainer()
 	cors := restful.CrossOriginResourceSharing{
-		AllowedHeaders: []string{"*"},
-		AllowedDomains: []string{"*"},
-		AllowedMethods: []string{"HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE"},
-		CookiesAllowed: false,
-		Container:      r,
+		AllowedHeaders:    []string{"*"},
+		AllowedDomains:    []string{"*"},
+		AllowedMethods:    []string{"HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE"},
+		CookiesAllowed:    false,
+		Container:         r,
+		AllowedDomainFunc: func(origin string) bool { return true },
 	}
 	r.Filter(cors.Filter)
 	// 接入到mcenter认证中间件, 提供grpc认证凭证
