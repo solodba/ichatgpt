@@ -10,7 +10,7 @@ require (
 	github.com/emicklei/go-restful/v3 v3.11.3
 	github.com/go-openapi/spec v0.20.9
 	github.com/sashabaranov/go-openai v1.20.2
-	github.com/solodba/mcube v0.0.1
+	github.com/solodba/mcube v1.0.4
 	github.com/spf13/cobra v1.8.0
 )
 
