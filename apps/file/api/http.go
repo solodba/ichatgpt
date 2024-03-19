@@ -33,6 +33,13 @@ func (h *handler) Version() string {
 func (h *handler) RegistryHandler(ws *restful.WebService) {
 	tags := []string{"File管理"}
 	// webservice定义路由信息
+	// web上传文件
+	ws.Route(ws.POST("/upload").To(h.WebUploadFile).
+		Doc("web上传文件").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Consumes("multipart/form-data").
+		Returns(200, "OK", nil))
+
 	// 上传文件
 	ws.Route(ws.POST("/").To(h.UploadFile).
 		Doc("上传文件").

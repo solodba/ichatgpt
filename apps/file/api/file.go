@@ -1,6 +1,9 @@
 package api
 
 import (
+	"io"
+	"os"
+
 	"github.com/emicklei/go-restful/v3"
 	"github.com/solodba/ichatgpt/apps/file"
 	"github.com/solodba/mcube/response"
@@ -64,4 +67,19 @@ func (h *handler) DeleteFile(r *restful.Request, w *restful.Response) {
 		return
 	}
 	w.WriteEntity(response.NewSuccess(200, resp))
+}
+
+// web上传文件
+func (h *handler) WebUploadFile(r *restful.Request, w *restful.Response) {
+	f, err := os.OpenFile("file/finetuning.jsonl", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0777)
+	if err != nil {
+		w.WriteEntity(response.NewFail(500, err.Error()))
+		return
+	}
+	defer f.Close()
+	_, err = io.Copy(f, r.Request.Body)
+	if err != nil {
+		w.WriteEntity(response.NewFail(500, err.Error()))
+		return
+	}
 }
