@@ -83,3 +83,18 @@ func (h *handler) WebUploadFile(r *restful.Request, w *restful.Response) {
 		return
 	}
 }
+
+// web上传文件
+func (h *handler) WebUploadAudioFile(r *restful.Request, w *restful.Response) {
+	f, err := os.OpenFile("file/voice.mp3", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0777)
+	if err != nil {
+		w.WriteEntity(response.NewFail(500, err.Error()))
+		return
+	}
+	defer f.Close()
+	_, err = io.Copy(f, r.Request.Body)
+	if err != nil {
+		w.WriteEntity(response.NewFail(500, err.Error()))
+		return
+	}
+}

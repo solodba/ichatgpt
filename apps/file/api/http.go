@@ -40,6 +40,13 @@ func (h *handler) RegistryHandler(ws *restful.WebService) {
 		Consumes("multipart/form-data").
 		Returns(200, "OK", nil))
 
+	// web上传MP3文件
+	ws.Route(ws.POST("/upload/audio").To(h.WebUploadAudioFile).
+		Doc("web上传MP3文件").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Consumes("multipart/form-data").
+		Returns(200, "OK", nil))
+
 	// 上传文件
 	ws.Route(ws.POST("/").To(h.UploadFile).
 		Doc("上传文件").
